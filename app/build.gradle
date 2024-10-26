@@ -1,0 +1,48 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+    id("com.google.gms.google-services") // Apply the Google services plugin here
+}
+
+android {
+    namespace = "com.example.cardiac_care_app" // Ensure this matches your package name
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        // Ensure applicationId matches the package name in AndroidManifest.xml
+        applicationId = "com.example.cardiac_care_app" // Updated to match the package name
+        minSdk = 23 // Update minSdk to 23
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug // Ensure you have a signing config if needed
+        }
+    }
+}
+
+dependencies {
+    // Add Firebase dependencies
+    implementation platform('com.google.firebase:firebase-bom:31.1.0') // Use the latest version
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-auth'
+    // Add other Firebase dependencies as needed
+}
+
+flutter {
+    source = "../.." // Flutter source path
+}
